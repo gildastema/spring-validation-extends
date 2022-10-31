@@ -1,9 +1,15 @@
 plugins {
-    id 'org.springframework.boot' version '2.7.5'
+    id 'org.springframework.boot' version '2.7.5' apply false
     id 'io.spring.dependency-management' version '1.0.15.RELEASE'
-    id 'java'
+    id 'java-library'
 }
 
+
+dependencyManagement {
+    imports {
+        mavenBom org.springframework.boot.gradle.plugin.SpringBootPlugin.BOM_COORDINATES
+    }
+}
 group = 'com.gildastema.spring-validation-extends'
 version = '0.0.1-SNAPSHOT'
 sourceCompatibility = '1.8'
