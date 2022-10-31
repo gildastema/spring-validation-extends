@@ -12,33 +12,18 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-@ExtendWith(SpringExtension.class)
-@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-@AutoConfigureTestDatabase
-public class MatchTest {
 
-    @LocalServerPort
-    private int localPort;
-    @Autowired
-    private TestRestTemplate restTemplate;
+public class MatchTest extends AbstractIntegration{
 
     @Test
     public void verifyMatchOK(){
-        final HttpHeaders headers = new HttpHeaders();
-        headers.setContentType(MediaType.APPLICATION_JSON);
-        final String baseUrl = "http://localhost:"+localPort+"/api/match";
-        final HttpEntity  request = new HttpEntity(new MatchRequest("123456789", "123456789"), headers );
-        ResponseEntity<Object> response = restTemplate.postForEntity(baseUrl, request, null);
+        final ResponseEntity<Object> response = postJson( "/api/match", new MatchRequest("123456789", "123456789") );
         assertThat(response.getStatusCode()).isEqualTo(HttpStatus.OK);
     }
 
     @Test
     public void verifyMachFailed(){
-        final HttpHeaders headers = new HttpHeaders();
-        headers.setContentType(MediaType.APPLICATION_JSON);
-        final String baseUrl = "http://localhost:"+localPort+"/api/match";
-        final HttpEntity  request = new HttpEntity(new MatchRequest("123456789", "1234567"), headers );
-        ResponseEntity<Object> response = restTemplate.postForEntity(baseUrl, request, null);
+        ResponseEntity<Object> response = postJson("/api/match", new MatchRequest("123456789", "1234567"));
         assertThat(response.getStatusCode()).isEqualTo(HttpStatus.BAD_REQUEST);
     }
 }
