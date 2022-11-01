@@ -1,13 +1,12 @@
-package com.gildastema.validations;
+package com.gildastema.validations.Features;
 
 import com.gildastema.validations.supports.Person;
 import com.gildastema.validations.supports.PersonRepository;
+import com.gildastema.validations.supports.UniqueRequest;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-
-import javax.validation.ValidationException;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertThrows;

@@ -1,8 +1,9 @@
-package com.gildastema.validations;
+package com.gildastema.validations.Features;
 
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
+import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.boot.test.web.server.LocalServerPort;
@@ -16,10 +17,12 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT,
       properties = {
               "spring.jpa.hibernate.ddl-auto=create-drop",
-              "spring.jpa.show-sql = true"
+              "spring.jpa.show-sql = true",
+              "spring.datasource.driverClassName= org.h2.Driver",
+              "spring.jpa.database-platform=org.hibernate.dialect.H2Dialect"
       }
 )
-@AutoConfigureTestDatabase
+@AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
 public class AbstractIntegration {
 
       @LocalServerPort

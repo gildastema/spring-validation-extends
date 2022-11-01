@@ -1,4 +1,4 @@
-package com.gildastema.validations;
+package com.gildastema.validations.supports;
 
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -7,10 +7,12 @@ import org.springframework.web.bind.annotation.RestController;
 import javax.validation.Valid;
 
 @RestController
-public class UniqueController {
+public class MatchController {
 
-    @PostMapping("/api/unique")
-    public void unique(@Valid @RequestBody UniqueRequest uniqueRequest){
+
+    @PostMapping("api/match")
+    public void match(@Valid @RequestBody MatchRequest matchRequest){
 
     }
+
 }

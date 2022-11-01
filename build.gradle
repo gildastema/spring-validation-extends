@@ -6,6 +6,7 @@ plugins {
     id 'java-library'
 }
 
+def spring_version='2.7.5'
 
 dependencyManagement {
     imports {
@@ -13,7 +14,7 @@ dependencyManagement {
     }
 }
 group = 'com.gildastema.spring-validation-extends'
-version = '0.0.1-SNAPSHOT'
+version = '0.0.2'
 sourceCompatibility = '1.8'
 
 repositories {
@@ -21,19 +22,16 @@ repositories {
 }
 
 dependencies {
-    testImplementation 'org.springframework.boot:spring-boot-starter-web:2.7.5'
-    testImplementation 'org.springframework.boot:spring-boot-starter-data-jpa:2.7.5'
-    testImplementation 'org.springframework.boot:spring-boot-starter-test:2.75'
-    testImplementation 'com.h2database:h2-mvstore:2.1.214'
+    testImplementation "org.springframework.boot:spring-boot-starter-web:${spring_version}"
+    testImplementation "org.springframework.boot:spring-boot-starter-data-jpa:${spring_version}"
+    testImplementation "org.springframework.boot:spring-boot-starter-test:${spring_version}"
+    testImplementation 'com.h2database:h2:2.1.214'
 
-    implementation 'org.springframework.boot:spring-boot-starter-validation:2.7.5'
+
+    implementation "org.springframework.boot:spring-boot-starter-validation:${spring_version}"
 }
 
 tasks.named('test') {
     useJUnitPlatform()
-    testLogging {
-        events "passed", "skipped", "failed", "standardOut", "standardError"
-    }
-
 }
 
